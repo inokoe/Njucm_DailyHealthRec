@@ -81,7 +81,8 @@ res = requests.get('https://pdc.njucm.edu.cn/pdc/formDesignApi/S/iKKUJvEV',heade
 if res.status_code == 200:
     if res.text.find('提交'):
         print('Cookie Check Pass')
-        res = requests.post('https://pdc.njucm.edu.cn/pdc/formDesignApi/dataFormSave?wid=A25FF315167F5528E0533200140AA058&userId=584820247',data=params,headers=headersx)
+        url = 'https://pdc.njucm.edu.cn/pdc/formDesignApi/dataFormSave?wid=A25FF315167F5528E0533200140AA058&userId='+student_number
+        res = requests.post(url,data=params,headers=headersx)
         if res.status_code == 200:
             print('Date Success Post')
         else:
