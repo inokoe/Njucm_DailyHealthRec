@@ -1,0 +1,30 @@
+name: 'NjucmSessionCheck'
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '*/15 * * * *'
+
+env:
+    COOKIE: ${{secrets.COOKIE}}
+    LOCATION: ${{secrets.LOCATION}}
+    NAME: ${{secrets.NAME}}
+    STUDENT_NUMBER: ${{secrets.STUDENT_NUMBER}}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          ref: main
+      - name: Setup Python
+        uses: actions/setup-python@v2
+      - name: Install
+        run: pip install requests beautifulsoup4
+      - name: run
+        run: python NjucmSessionCheck.py
+
