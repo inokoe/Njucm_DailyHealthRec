@@ -1,11 +1,11 @@
-name: 'NjucmSessionCheck'
+name: 'NjucmDailyRec'
 
 on:
   push:
     branches:
       - main
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '10 6 * * *'
 
 env:
     COOKIE: ${{secrets.COOKIE}}
@@ -21,12 +21,10 @@ jobs:
         uses: actions/checkout@master
         with:
           ref: main
-      - name: Checkout private tools
-        uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2
       - name: Install
         run: pip install requests beautifulsoup4
       - name: run
-        run: python NjucmSessionCheck.py
+        run: python NjucmDailyRec.py
 
