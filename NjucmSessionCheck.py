@@ -26,9 +26,12 @@ headers['Cookie'] = cookie
 
 now_time = datetime.datetime.now().strftime('%Y/%m/%d')
 print(now_time)
-res = requests.get('https://pdc.njucm.edu.cn/pdc/formDesignApi/S/iKKUJvEV',headers=headers)
-if res.status_code == 200:
-    if res.text.find('提交'):
-        print('Cookie Check Pass')
-    else:
-        print('Error' + res.status_code)
+try:
+    res = requests.get('https://pdc.njucm.edu.cn/pdc/formDesignApi/S/iKKUJvEV',headers=headers)
+    if res.status_code == 200:
+        if res.text.find('提交'):
+            print('Cookie Check Pass')
+        else:
+            print('Error' + res.status_code)
+except:
+    print('Request error')
